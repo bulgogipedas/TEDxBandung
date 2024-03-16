@@ -1,5 +1,5 @@
 "use client"
-import { signIn } from "next-auth/react"
+import { login } from "@/actions/login"
 import { useState } from "react"
 
 export default function LoginForm() {
@@ -12,10 +12,7 @@ export default function LoginForm() {
         e.preventDefault()
 
         try {
-            const res = await signIn('credentials', {
-              email: "test@gmail.com",
-              password: "1234",
-            })
+            const res = await login(formData)
     
             console.log(res);
             
