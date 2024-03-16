@@ -1,7 +1,9 @@
+import LoginForm from "@/components/form/loginForm"
+
 export default function Login() {
     return (
       <main>
-        <button className="btn btn-primary text-white">login</button>
+        <LoginForm />
       </main>
     );
   }
