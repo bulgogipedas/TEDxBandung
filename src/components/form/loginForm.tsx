@@ -1,33 +1,68 @@
 "use client"
 import { login } from "@/actions/login"
-import { useState } from "react"
+import { useFormData } from "@/hooks"
 
 export default function LoginForm() {
-    const [formData, setFormdata] = useState({
-        email: '',
-        password: ''
-    })
+  const defaultValue = {
+    email: '',
+    password: ''
+  }
 
-    const handleLogin = async (e: React.FormEvent) => {
-        e.preventDefault()
+  const {
+    formData,
+    validationError,
+    disabledButton,
+    handleChangeFormData,
+    handleBlurFormData
+  } = useFormData(defaultValue)
 
-        try {
-            const res = await login(formData)
-    
-            console.log(res);
-            
-          } catch (error) {
-            console.error(error);
-          }
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    try {
+      const res = await login(formData as typeof defaultValue)
+
+      if (!res?.error) return
+
+      console.error("tedx error : ", res?.error);
+
+    } catch (error) {
+      console.error("tedx error : ", error);
     }
-    
-    return (
-        <form onSubmit={handleLogin}>
-            <label>Email</label>
-            <input type="email" onChange={(e) => { setFormdata({ ...formData, email: e.target.value }) }} />
-            <label>Password</label>
-            <input type="password" onChange={(e) => { setFormdata({ ...formData, password: e.target.value }) }} />
-            <button type="submit" className="btn btn-primary">button</button>
-        </form>
-    )
+  }
+
+  return (
+    <form onSubmit={handleLogin}>
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        onBlur={handleBlurFormData}
+        onChange={handleChangeFormData}
+      />
+      {
+        validationError.error?.email?.length > 0 &&
+        validationError.error?.email.map((err, i) => {
+          return (
+            <span className="text-red-500" key={i}>{err}</span>
+          )
+        })
+      }
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        onBlur={handleBlurFormData}
+        onChange={handleChangeFormData}
+      />
+      {
+        validationError.error?.password?.length > 0 &&
+        validationError.error?.password.map((err, i) => {
+          return (
+            <span className="text-red-500" key={i}>{err}</span>
+          )
+        })
+      }
+      <button type="submit" className="btn btn-primary" disabled={disabledButton}>button</button>
+    </form>
+  )
 }
