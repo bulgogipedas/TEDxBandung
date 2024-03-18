@@ -16,6 +16,7 @@ async function getJsonPlaceholder() {
 
 export default async function PokemonPage() {
     // fetching secara paralel, tidak berurutan
+    // cocok digunakan jika tidak ada ketergantungan data
     const pokemons = getPokemon()
     const placeholders = getJsonPlaceholder()
 

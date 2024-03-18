@@ -16,6 +16,7 @@ async function getJsonPlaceholder() {
 
 export default async function PokemonPage() {
     // fetching sekuensial, pokemon dulu lalu placeholder
+    // cocok digunakan jika pemanggilan api kedua membutuhkan data dari api pertama
     const pokemons = await getPokemon()
     const placeholders = await getJsonPlaceholder()
 
