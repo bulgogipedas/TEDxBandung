@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+branch=$(git symbolic-ref --short HEAD)
+
+# Check if the current branch is the main or master branch
+if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
+  echo "You are not allowed to push to the $branch branch. Please create a new branch and make a pull request instead."
+  exit 1
+fi
+
+# If the current branch is not main or master, allow the push to proceed
+npm run build
