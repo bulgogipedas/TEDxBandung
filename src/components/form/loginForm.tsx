@@ -21,9 +21,9 @@ export default function LoginForm() {
     try {
       const res = await login(formData as typeof defaultValue)
 
-      if (!res?.error) return
-
-      console.error("tedx error : ", res?.error);
+      if (res?.error) {
+        throw res
+      }
 
     } catch (error) {
       console.error("tedx error : ", error);

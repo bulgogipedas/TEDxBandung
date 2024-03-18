@@ -3,6 +3,8 @@ import type { NextAuthConfig } from "next-auth"
 
 export default {
   providers: [Credentials({
+    id: 'credentials',
+    type: "credentials",
     async authorize(credentials) {
       const { email, password } = credentials
 
@@ -12,5 +14,13 @@ export default {
       return null
     }
   })],
-  session: { strategy: 'jwt' }
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      return baseUrl;
+    }
+  },
+  session: { strategy: 'jwt' },
+  pages: {
+    signIn: '/auth/login'
+  }
 } satisfies NextAuthConfig
