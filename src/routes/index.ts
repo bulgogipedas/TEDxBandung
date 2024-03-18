@@ -4,7 +4,11 @@
  * @type {string[]}
  */
 export const publicRoutes = [
-    "/"
+    "/",
+    "/example/pokemon/ssr",
+    "/example/pokemon/ssr/parallel",
+    "/example/pokemon/ssr/sequential",
+    "/example/pokemon/csr",
 ]
 
 /**
