@@ -3,6 +3,22 @@
         @apply text-white font-bold py-2 px-4 rounded;
         @apply hover:bg-blue-700;
         @apply disabled:cursor-not-allowed disabled:brightness-150;
+        @apply flex items-center justify-center;
+        
+        &[data-loading="true"] {
+            cursor: not-allowed;
+            &::before {
+                content: '';
+                display: block;
+                color: white;
+                width: 24px; /* Adjust width and height according to your spinner size */
+                height: 24px;
+                margin-right: 10px;
+                background-image: url('../../assets/icons/ring-resize.svg'); /* Replace 'path_to_your_spinner.svg' with the actual path to your SVG */
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
 
         &.btn-primary {
             @apply bg-blue-500;
