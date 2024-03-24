@@ -1,3 +1,24 @@
+# Table of contents  
+1. [Getting Started](#getting-started)  
+2. [Learn More](#learn-more) 
+3. [Folder Structure](#folder-structure)
+    1. [husky](#husky)   
+    2. [app](#app)   
+    3. [components](#components)   
+    4. [hooks](#hooks)   
+    5. [routes](#routes)   
+    6. [schemas](#schemas)   
+    7. [scss](#scss)   
+4. [Contributing Guide](#contributing-guide)
+    1. [Commit convention](#commit-convention)   
+    2. [Type](#type)   
+    3. [How to contribute](#how-to-contribute)  
+        1. [Create Issue](#step-1--create-issue)
+        2. [Create Branch From Issue](#step-2--create-branch-from-the-issue)
+        3. [Change branch source to development](#step-3--change-branch-source-to-development)
+        4. [Checkout locally](#step-4--checkout-locally)
+        5. [Create pull request to branch development](#step-5--create-pull-request-to-branch-development)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -127,7 +148,7 @@ Must be one of the following:
 - <b>refactor</b>: A code change that neither fixes a bug nor adds a feature
 - <b>test</b>: Adding missing tests or correcting existing tests
 
-### Commit convention
+### How to contribute
 
 #### Step 1 : Create Issue
 make sure the `title` as relevant as possible and meets the following scopes.
