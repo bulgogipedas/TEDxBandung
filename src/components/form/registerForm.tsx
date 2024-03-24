@@ -1,9 +1,8 @@
 "use client"
 import { useFormData } from "@/hooks"
+import { registerSchema } from "@/schemas/auth/registerSchema"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-
-import * as zod from "zod"
 
 export default function RegisterForm() {
   const route = useRouter()
@@ -18,18 +17,13 @@ export default function RegisterForm() {
     job: ''
   }
 
-  const schema = zod.object({
-    email: zod.string().email().min(1, "email required"),
-    job: zod.string().min(1, "job required")
-  })
-
   const {
     formData,
     validationError,
     disabledButton,
     handleChangeFormData,
     handleBlurFormData,
-  } = useFormData(defaultValue, schema)
+  } = useFormData(defaultValue, registerSchema)
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -66,6 +60,7 @@ export default function RegisterForm() {
         <input
           type="email"
           name="email"
+          placeholder="email"
           className={`input input-primary ${validationError.error?.email?.length > 0 ? 'input-error' : ''}`}
           onBlur={handleBlurFormData}
           onChange={handleChangeFormData}
@@ -78,17 +73,18 @@ export default function RegisterForm() {
             )
           })
         }
-        <label>Job</label>
+        <label>Password</label>
         <input
-          type="text"
-          name="job"
-          className={`input input-primary ${validationError.error?.job?.length > 0 ? 'input-error' : ''}`}
+          type="password"
+          name="password"
+          placeholder="password"
+          className={`input input-primary ${validationError.error?.password?.length > 0 ? 'input-error' : ''}`}
           onBlur={handleBlurFormData}
           onChange={handleChangeFormData}
         />
         {
-          validationError.error?.job?.length > 0 &&
-          validationError.error?.job.map((err, i) => {
+          validationError.error?.password?.length > 0 &&
+          validationError.error?.password.map((err, i) => {
             return (
               <span className="text-red-500" key={i}>{err}</span>
             )

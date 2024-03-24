@@ -3,7 +3,7 @@ import { ZodObject } from "zod";
 
 type ValidationError = { error: { [key: string]: string[] } }
 
-const useFormData = (fields: { [key: string]: string }, validationSchema: ZodObject<any> ) => {
+const useFormData = (fields: { [key: string]: string }, validationSchema: ZodObject<any>) => {
     const [formData, setFormdata] = useState(fields)
     const [validationError, setValidationError] = useState<ValidationError>({
         error: {}
@@ -18,10 +18,26 @@ const useFormData = (fields: { [key: string]: string }, validationSchema: ZodObj
 
         if (!schema.success) {
             const error = schema.error.flatten().fieldErrors;
-            setValidationError({ error: error as { [key: string]: string[] } })
-            setDisabledButton(true)
+            setValidationError(prevState => {
+                return {
+                    ...prevState,
+                    error: {
+                        ...prevState.error,
+                        [e.target.name]: error[e.target.name] || []
+                    }
+                }
+            })
+            setDisabledButton(Object.values(validationError.error).some(err => err.length > 0))
         } else {
-            setValidationError({ error: {} })
+            setValidationError(prevState => {
+                return {
+                    ...prevState,
+                    error: {
+                        ...prevState.error,
+                        [e.target.name]: []
+                    }
+                }
+            })
             setDisabledButton(false)
         }
     }

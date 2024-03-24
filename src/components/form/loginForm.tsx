@@ -52,6 +52,7 @@ export default function LoginForm() {
         <input
           type="email"
           name="email"
+          placeholder="email"
           className={`input input-primary ${validationError.error?.email?.length > 0 ? 'input-error' : ''}`}
           onBlur={handleBlurFormData}
           onChange={handleChangeFormData}
@@ -68,6 +69,7 @@ export default function LoginForm() {
         <input
           type="password"
           name="password"
+          placeholder="password"
           className={`input input-primary ${validationError.error?.password?.length > 0 ? 'input-error' : ''}`}
           onBlur={handleBlurFormData}
           onChange={handleChangeFormData}
