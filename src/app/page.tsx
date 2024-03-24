@@ -1,7 +1,9 @@
 export default function Home() {
   return (
     <main>
-      <button className="btn btn-primary text-white">button</button>
+      <a href="/auth/login">
+        <button className="btn btn-primary text-white">Login</button>
+      </a>
     </main>
   );
 }
