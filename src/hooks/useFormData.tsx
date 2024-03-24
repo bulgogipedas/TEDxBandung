@@ -27,7 +27,7 @@ const useFormData = (fields: { [key: string]: string }, validationSchema: ZodObj
                     }
                 }
             })
-            setDisabledButton(Object.values(validationError.error).some(err => err.length > 0))
+            setDisabledButton(true)
         } else {
             setValidationError(prevState => {
                 return {
