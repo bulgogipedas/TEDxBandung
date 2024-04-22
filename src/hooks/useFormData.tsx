@@ -1,9 +1,9 @@
-import { loginSchema } from "@/schemas/auth/loginSchema";
 import { useState } from "react";
+import { ZodObject } from "zod";
 
 type ValidationError = { error: { [key: string]: string[] } }
 
-const useFormData = (fields: { [key: string]: string } ) => {
+const useFormData = (fields: { [key: string]: string }, validationSchema: ZodObject<any>) => {
     const [formData, setFormdata] = useState(fields)
     const [validationError, setValidationError] = useState<ValidationError>({
         error: {}
@@ -11,17 +11,33 @@ const useFormData = (fields: { [key: string]: string } ) => {
     const [disabledButton, setDisabledButton] = useState(true)
 
     const validateFormData = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const schema = loginSchema.safeParse({
+        const schema = validationSchema.safeParse({
             ...formData,
             [e.target.name]: e.target.value
         })
 
         if (!schema.success) {
-            const error = schema.error.flatten().fieldErrors
-            setValidationError({ error })
+            const error = schema.error.flatten().fieldErrors;
+            setValidationError(prevState => {
+                return {
+                    ...prevState,
+                    error: {
+                        ...prevState.error,
+                        [e.target.name]: error[e.target.name] || []
+                    }
+                }
+            })
             setDisabledButton(true)
         } else {
-            setValidationError({ error: {} })
+            setValidationError(prevState => {
+                return {
+                    ...prevState,
+                    error: {
+                        ...prevState.error,
+                        [e.target.name]: []
+                    }
+                }
+            })
             setDisabledButton(false)
         }
     }
