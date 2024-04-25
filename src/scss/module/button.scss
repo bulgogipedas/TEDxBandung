@@ -26,18 +26,21 @@
         @apply bg-base-white border-base-black;
         @apply hover:bg-base-black hover:text-base-white hover:border-base-white;
         @apply active:bg-base-black/70;
+        @apply disabled:bg-base-white/70 disabled:text-base-black disabled:border-base-black;
       }
 
       &.btn-base-black {
         @apply bg-base-black border-base-white text-white;
         @apply hover:bg-base-white hover:text-base-black hover:border-base-black;
         @apply active:bg-base-white/70;
+        @apply disabled:bg-base-black/70 disabled:text-base-white disabled:border-base-white;
       }
 
       &.btn-brand {
         @apply bg-brand-500 border-base-white text-white;
         @apply hover:bg-base-white hover:text-base-black hover:border-base-black;
         @apply active:bg-base-white/70;
+        @apply disabled:bg-brand-500/70 disabled:text-base-white disabled:border-base-white;
       }
     }
   }
