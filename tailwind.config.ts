@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -77,7 +78,16 @@ const config: Config = {
           "700": "#027A48",
           "800": "#05603A",
           "900": "#054F31"
+        },
+        "shadow": {
+          "title": "rgba(235, 0, 40, 0.25)",
         }
+      },
+      fontWeight: {
+        "regular": "400",
+        "medium": "500",
+        "semibold": "600",
+        "bold": "700"
       },
       fontSize: {
         "headline-1": "40px",
@@ -88,9 +98,29 @@ const config: Config = {
         "body": "17px",
         "caption": "13px",
         "caption-2": "11px"
+      },
+      textShadow: {
+        sm: '0 1px 2px var(--tw-shadow-color)',
+        DEFAULT: '0 2px 4px var(--tw-shadow-color)',
+        lg: '0 8px 16px var(--tw-shadow-color)',
+      },
+      fontFamily: {
+        "plus-jakarta-sans": ['var(--font-jakarta-sans)'],
+        "montserrat": ['var(--font-montserrat)'],
       }
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }),
+  ],
 };
 export default config;
