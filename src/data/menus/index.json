@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "path": "/about",
+            "label": "About"
+        },
+        {
+            "path": "/coming-soon",
+            "label": "Coming Soon"
+        },
+        {
+            "path": "/event",
+            "label": "Event"
+        },
+        {
+            "path": "/partner",
+            "label": "Partners"
+        }
+    ]
+}

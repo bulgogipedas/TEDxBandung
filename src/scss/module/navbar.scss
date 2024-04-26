@@ -1,0 +1,172 @@
+@layer components {
+  .header {
+    @apply flex items-center justify-between py-3 md:px-10 px-5 transition duration-1000;
+    @apply fixed top-0 left-0 right-0;
+
+    &.header-active {
+      @apply bg-base-white;
+    }
+  }
+
+  .nav {
+    @apply shadow-xl;
+
+    // navigation version 1
+    &.nav-base-black {
+      @apply bg-base-black text-base-white w-1/2;
+
+      ul {
+        @apply flex relative;
+        @apply after:bg-base-white after:w-full after:h-[1.5px] after:absolute after:bottom-0;
+      }
+
+      li {
+        @apply relative py-3 min-w-[25%] text-center whitespace-nowrap transition-all;
+        @apply after:absolute after:content-[""] after:bottom-0;
+        @apply after:w-0 after:h-[1.5px] after:block;
+        @apply after:transition-all after:duration-500 after:ease-in-out;
+        @apply after:bg-brand-500 after:z-20;
+        @apply hover:after:w-full hover:after:h-[1.5px] hover:text-brand-500;
+
+        &.active {
+          @apply after:w-full after:h-[2px] text-brand-500 font-bold;
+        }
+      }
+    }
+
+    // nav version 2
+    &.nav-base-black-rounded {
+      @apply py-3 px-20;
+      @apply bg-base-black rounded-full text-base-white;
+
+      ul {
+        @apply gap-20;
+      }
+
+      li {
+        @apply hover:text-brand-500 transition duration-200;
+
+        &.active {
+          @apply text-brand-500 font-bold;
+          @apply underline underline-offset-8;
+        }
+      }
+    }
+
+    // nav version 3
+    &.nav-base-white-rounded {
+      @apply py-3 px-20;
+      @apply bg-base-white rounded-full text-base-black;
+
+      ul {
+        @apply gap-20;
+      }
+
+      li {
+        @apply hover:text-brand-500 transition duration-200;
+
+        &.active {
+          @apply text-brand-500 font-bold;
+          @apply underline underline-offset-8;
+        }
+      }
+    }
+
+    // nav version 4
+    &.nav-base-transparent {
+      @apply bg-transparent text-base-white w-1/2;
+
+      ul {
+        @apply flex relative;
+        @apply after:bg-base-white after:w-full after:h-[1.5px] after:absolute after:bottom-0;
+      }
+
+      li {
+        @apply relative py-3 min-w-[25%] text-center whitespace-nowrap transition-all;
+        @apply after:absolute after:content-[""] after:bottom-0;
+        @apply after:w-0 after:h-[1.5px] after:block;
+        @apply after:transition-all after:duration-500 after:ease-in-out;
+        @apply after:bg-brand-500 after:z-20;
+        @apply hover:after:w-full hover:after:h-[1.5px] hover:text-brand-500;
+
+        &.active {
+          @apply after:w-full after:h-[2px] text-brand-500 font-bold;
+        }
+      }
+    }
+
+    // nav version 5
+    &.nav-base-white-rounded {
+      @apply py-3 px-20;
+      @apply bg-base-white rounded-full text-base-black;
+
+      ul {
+        @apply gap-20;
+      }
+
+      li {
+        @apply hover:text-brand-500 transition duration-200;
+
+        &.active {
+          @apply text-brand-500 font-bold;
+        }
+      }
+    }
+  }
+
+  .nav-mobile {
+    @apply fixed top-0 left-0 right-0 bottom-0;
+    @apply flex flex-col items-center justify-center;
+    @apply bg-dark-blue -z-10;
+    @apply transition duration-200;
+  }
+
+  .sidebar {
+    @apply font-poppins fixed top-0 bottom-0 left-0 min-w-[200px] bg-dark-blue z-30;
+    @apply md:right-[unset] right-0;
+    @apply transition duration-200;
+
+    &.sidebar-open {
+      @apply md:translate-x-0;
+    }
+
+    &.sidebar-close {
+      @apply -translate-x-[1000px] md:-translate-x-0;
+    }
+
+    .sidebar-link {
+      @apply text-light-purple hover:text-light-blue hover:underline transition duration-200 py-3 pl-3 text-sm;
+
+      &.active {
+        @apply bg-[#2E37A4] text-white;
+        &::after {
+          content: "";
+          background-color: #36c2cf;
+          width: 8px; /* Adjust width and height according to your spinner size */
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+      }
+    }
+  }
+  .sidebar-btn-toggle {
+    @apply fixed h-[60px] left-0 top-1/2 -translate-y-1/2 bg-dark-blue;
+    @apply rounded-r-xl grid place-items-center z-20;
+  }
+  .dropdown {
+    @apply absolute top-20 right-10;
+    @apply transition duration-200;
+    @apply translate-y-40 opacity-0;
+    @apply bg-white px-10 py-3 shadow-xl;
+    @apply -z-10;
+
+    &.dropdown-open {
+      @apply translate-y-0 opacity-100 z-20;
+    }
+  }
+  .backdrop {
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-black/20;
+  }
+}

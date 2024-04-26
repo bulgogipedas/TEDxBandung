@@ -1,27 +1,47 @@
 @layer components {
     .btn {
-        @apply text-white font-bold py-2 px-4 rounded;
-        @apply hover:bg-blue-700;
-        @apply disabled:cursor-not-allowed disabled:brightness-150;
-        @apply flex items-center justify-center;
-        
-        &[data-loading="true"] {
-            cursor: not-allowed;
-            &::before {
-                content: '';
-                display: block;
-                color: white;
-                width: 24px; /* Adjust width and height according to your spinner size */
-                height: 24px;
-                margin-right: 10px;
-                background-image: url('../../assets/icons/ring-resize.svg'); /* Replace 'path_to_your_spinner.svg' with the actual path to your SVG */
-                background-repeat: no-repeat;
-                background-position: center;
-            }
+      @apply p-4 border;
+      @apply disabled:cursor-not-allowed disabled:brightness-150;
+      @apply flex items-center justify-center gap-3;
+      @apply transition duration-200;
+      @apply md:text-body text-xs;
+      @apply whitespace-nowrap rounded-full;
+  
+      &[data-loading="true"] {
+        cursor: not-allowed;
+        &::before {
+          content: "";
+          display: block;
+          color: white;
+          width: 24px; /* Adjust width and height according to your spinner size */
+          height: 24px;
+          margin-right: 10px;
+          background-image: url("../../assets/icons/ring-resize.svg"); /* Replace 'path_to_your_spinner.svg' with the actual path to your SVG */
+          background-repeat: no-repeat;
+          background-position: center;
         }
+      }
+  
+      &.btn-base-white {
+        @apply bg-base-white border-base-black;
+        @apply hover:bg-base-black hover:text-base-white hover:border-base-white;
+        @apply active:bg-base-black/70;
+        @apply disabled:bg-base-white/70 disabled:text-base-black disabled:border-base-black;
+      }
 
-        &.btn-primary {
-            @apply bg-blue-500;
-        }
+      &.btn-base-black {
+        @apply bg-base-black border-base-white text-white;
+        @apply hover:bg-base-white hover:text-base-black hover:border-base-black;
+        @apply active:bg-base-white/70;
+        @apply disabled:bg-base-black/70 disabled:text-base-white disabled:border-base-white;
+      }
+
+      &.btn-brand {
+        @apply bg-brand-500 border-base-white text-white;
+        @apply hover:bg-base-white hover:text-base-black hover:border-base-black;
+        @apply active:bg-base-white/70;
+        @apply disabled:bg-brand-500/70 disabled:text-base-white disabled:border-base-white;
+      }
     }
-}
+  }
+  

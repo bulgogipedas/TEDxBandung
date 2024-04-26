@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@/scss/main.scss";
 import { default as SessionWrapper } from "@/components/session/wrapper";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Header } from "@/components/partials/navbar";
+import { montserrat, plusJakartaSans } from "@/components/fonts";
+import { NextProgressBar } from "@/components/loader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,9 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${plusJakartaSans.className} ${montserrat.className}`}>
+        <NextProgressBar />
+        <Header />
         <SessionWrapper>
-          {children}
+          <main>
+            {children}
+          </main>
         </SessionWrapper>
       </body>
     </html>
