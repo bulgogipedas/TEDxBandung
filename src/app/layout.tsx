@@ -3,6 +3,7 @@ import "@/scss/main.scss";
 import { default as SessionWrapper } from "@/components/session/wrapper";
 import { Header } from "@/components/partials/navbar";
 import { montserrat, plusJakartaSans } from "@/components/fonts";
+import { NextProgressBar } from "@/components/loader";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${plusJakartaSans.className} ${montserrat.className}`}>
+        <NextProgressBar />
         <Header />
         <SessionWrapper>
           <main>
