@@ -94,6 +94,24 @@
         }
       }
     }
+
+    // nav version 5
+    &.nav-base-white-rounded {
+      @apply py-3 px-20;
+      @apply bg-base-white rounded-full text-base-black;
+
+      ul {
+        @apply gap-20;
+      }
+
+      li {
+        @apply hover:text-brand-500 transition duration-200;
+
+        &.active {
+          @apply text-brand-500 font-bold;
+        }
+      }
+    }
   }
 
   .nav-mobile {

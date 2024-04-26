@@ -2,7 +2,7 @@
     .btn {
       @apply p-4 border;
       @apply disabled:cursor-not-allowed disabled:brightness-150;
-      @apply flex items-center justify-center;
+      @apply flex items-center justify-center gap-3;
       @apply transition duration-200;
       @apply md:text-body text-xs;
       @apply whitespace-nowrap rounded-full;
