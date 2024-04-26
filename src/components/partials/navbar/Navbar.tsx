@@ -7,12 +7,12 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
     const pathname = usePathname()
     return (
-        <nav role="navigation" className="nav">
-            <ul className="flex gap-5 justify-between">
+        <nav role="navigation" className="nav nav-base-white-rounded">
+            <ul className="flex items-center">
                 {
                     menu.data.map((menu, index) => (
-                        <li key={index}>
-                            <Link href={menu.path} className={`nav-link ${pathname === menu.path ? "active" : ""}`}>
+                        <li key={index} className={`${pathname === menu.path ? "active" : ""}`}>
+                            <Link href={menu.path} className="nav-link">
                                 {menu.label}
                             </Link>
                         </li>

@@ -9,9 +9,6 @@ export default function Home() {
           <button className="btn w-fit mx-auto btn-base-white mt-10">
             Upcoming Events
           </button>
-          <button className="btn btn-brand">
-            next
-          </button>
         </div>
       </section>
     </main>
