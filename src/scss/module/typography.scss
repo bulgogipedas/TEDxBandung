@@ -1,0 +1,6 @@
+@layer components {
+    .hero-title {
+        @apply text-7xl font-[900] text-base-white text-shadow-lg shadow-shadow-title;
+        @apply leading-[80px] uppercase font-montserrat text-center;
+    }
+}

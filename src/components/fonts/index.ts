@@ -3,9 +3,12 @@ import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 export const montserrat = Montserrat({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700", "800", "900"],
+    variable: '--font-montserrat',
+    display: "swap"
 })
 
 export const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
+    variable: '--font-jakarta-sans'
 })

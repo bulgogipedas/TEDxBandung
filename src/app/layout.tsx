@@ -17,13 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.className} ${montserrat.className}`}>
+      <body className={`${plusJakartaSans.variable} ${montserrat.variable}`}>
         <NextProgressBar />
         <Header />
         <SessionWrapper>
-          <main>
-            {children}
-          </main>
+          {children}
         </SessionWrapper>
       </body>
     </html>
