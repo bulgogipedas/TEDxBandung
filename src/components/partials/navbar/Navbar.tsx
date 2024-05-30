@@ -5,7 +5,8 @@ import menu from "@/data/menus/index.json";
 import { usePathname } from "next/navigation";
 
 interface Props {
-    setIsNavbarOpen: (val: boolean) => void
+    setIsNavbarOpen: (val: boolean) => void,
+    isNavbarOpen: boolean
 }
 export default function Navbar(props: Props) {
     const pathname = usePathname()
@@ -13,6 +14,19 @@ export default function Navbar(props: Props) {
         <>
             <nav role="navigation" className="nav nav-base-white-rounded hidden lg:block">
                 <ul className="flex items-center">
+                    {
+                        menu.data.map((menu, index) => (
+                            <li key={index} className={`${pathname === menu.path ? "active" : ""}`}>
+                                <Link href={menu.path} className="nav-link">
+                                    {menu.label}
+                                </Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+            <nav role="navigation" className="lg:hidden block nav nav-mobile">
+                <ul className={`flex flex-col items-center `}>
                     {
                         menu.data.map((menu, index) => (
                             <li key={index} className={`${pathname === menu.path ? "active" : ""}`}>

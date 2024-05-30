@@ -115,10 +115,24 @@
   }
 
   .nav-mobile {
-    @apply fixed top-0 left-0 right-0 bottom-0;
+    @apply fixed top-0 left-0 right-0;
     @apply flex flex-col items-center justify-center;
-    @apply bg-dark-blue -z-10;
+    @apply bg-base-black;
     @apply transition duration-200;
+
+    ul {
+      @apply fixed top-0 bottom-0 left-0 right-0;
+      @apply flex flex-col items-center justify-center gap-20;
+
+      li {
+        @apply text-base-white hover:text-brand-500;
+        @apply text-3xl;
+
+        &.active {
+          @apply text-brand-500 font-bold;
+        }
+      }
+    }
   }
 
   .sidebar {
