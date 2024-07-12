@@ -9,7 +9,8 @@ export const publicRoutes = [
     "/example/pokemon/ssr/parallel",
     "/example/pokemon/ssr/sequential",
     "/example/pokemon/csr",
-    "/example/debounce"
+    "/example/debounce",
+    "/example/form-validation"
 ]
 
 /**
