@@ -4,23 +4,21 @@
  * @type {string[]}
  */
 export const publicRoutes = [
-    "/",
-    "/example/pokemon/ssr",
-    "/example/pokemon/ssr/parallel",
-    "/example/pokemon/ssr/sequential",
-    "/example/pokemon/csr",
-    "/example/debounce"
-]
+  "/",
+  "/example/pokemon/ssr",
+  "/example/pokemon/ssr/parallel",
+  "/example/pokemon/ssr/sequential",
+  "/example/pokemon/csr",
+  "/example/debounce",
+  "/example/form-validation",
+];
 
 /**
  * An array of routes that are not accessible to public
  * These routes will redirect logged in users to about
  * @type {string[]}
  */
-export const authRoutes = [
-    "/auth/login",
-    "/auth/register"
-]
+export const authRoutes = ["/auth/login", "/auth/register"];
 
 /**
  * The prefix for API authentication routes
@@ -28,10 +26,10 @@ export const authRoutes = [
  * authentication purpose
  * @type {string[]}
  */
-export const apiAuthPrefix = "/api/auth"
+export const apiAuthPrefix = "/api/auth";
 
 /**
  * default login redirect path after logging in
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/about"
+export const DEFAULT_LOGIN_REDIRECT = "/about";
