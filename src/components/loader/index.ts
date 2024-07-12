@@ -1,1 +1,1 @@
-export { default as NextProgressBar } from "./NextProgressBar"
+export { default as NextProgressBar } from "./NextProgressBar";

@@ -1,3 +1,3 @@
 export const register = () => {
-    console.log("register")
-}
+  console.log("register");
+};

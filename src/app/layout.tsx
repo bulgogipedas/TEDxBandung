@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
 import "@/scss/main.scss";
-import { default as SessionWrapper } from "@/components/session/wrapper";
-import { Header } from "@/components/partials/navbar";
+
+import type { Metadata } from "next";
+
 import { montserrat, plusJakartaSans } from "@/components/fonts";
 import { NextProgressBar } from "@/components/loader";
+import { Header } from "@/components/partials/navbar";
+import { default as SessionWrapper } from "@/components/session/wrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,9 +23,7 @@ export default function RootLayout({
         <NextProgressBar />
         <Header />
         <SessionWrapper>
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </SessionWrapper>
       </body>
     </html>

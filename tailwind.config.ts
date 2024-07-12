@@ -15,11 +15,11 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "base": {
-          "white": "#FCFCFD",
-          "black": "#000000",
+        base: {
+          white: "#FCFCFD",
+          black: "#000000",
         },
-        "gray": {
+        gray: {
           "50": "#F9FAFB",
           "100": "#F2F4F7",
           "200": "#EAECF0",
@@ -31,7 +31,7 @@ const config: Config = {
           "800": "#1D2939",
           "900": "#101828",
         },
-        "brand": {
+        brand: {
           "50": "#FDE5E9",
           "100": "#FBCCD4",
           "200": "#F799A9",
@@ -41,9 +41,9 @@ const config: Config = {
           "600": "#BC0020",
           "700": "#8D0018",
           "800": "#5E0010",
-          "900": "#2F0008"
+          "900": "#2F0008",
         },
-        "error": {
+        error: {
           "50": "#FEF3F2",
           "100": "#FEE4E2",
           "200": "#FECDCA",
@@ -53,9 +53,9 @@ const config: Config = {
           "600": "#D92D20",
           "700": "#B42318",
           "800": "#912018",
-          "900": "#7A271A"
+          "900": "#7A271A",
         },
-        "warning": {
+        warning: {
           "50": "#FFFAEB",
           "100": "#FEF0C7",
           "200": "#FEDF89",
@@ -67,7 +67,7 @@ const config: Config = {
           "800": "#93370D",
           "900": "#7A2E0E",
         },
-        "success": {
+        success: {
           "50": "#ECFDF3",
           "100": "#D1FADF",
           "200": "#A6F4C5",
@@ -77,17 +77,17 @@ const config: Config = {
           "600": "#039855",
           "700": "#027A48",
           "800": "#05603A",
-          "900": "#054F31"
+          "900": "#054F31",
         },
-        "shadow": {
-          "title": "rgba(235, 0, 40, 0.25)",
-        }
+        shadow: {
+          title: "rgba(235, 0, 40, 0.25)",
+        },
       },
       fontWeight: {
-        "regular": "400",
-        "medium": "500",
-        "semibold": "600",
-        "bold": "700"
+        regular: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
       },
       fontSize: {
         "headline-1": "40px",
@@ -95,31 +95,31 @@ const config: Config = {
         "headline-3": "28px",
         "headline-4": "24px",
         "headline-5": "20px",
-        "body": "17px",
-        "caption": "13px",
-        "caption-2": "11px"
+        body: "17px",
+        caption: "13px",
+        "caption-2": "11px",
       },
       textShadow: {
-        sm: '0 1px 2px var(--tw-shadow-color)',
-        DEFAULT: '0 2px 4px var(--tw-shadow-color)',
-        lg: '0 8px 16px var(--tw-shadow-color)',
+        sm: "0 1px 2px var(--tw-shadow-color)",
+        DEFAULT: "0 2px 4px var(--tw-shadow-color)",
+        lg: "0 8px 16px var(--tw-shadow-color)",
       },
       fontFamily: {
-        "plus-jakarta-sans": ['var(--font-jakarta-sans)'],
-        "montserrat": ['var(--font-montserrat)'],
-      }
+        "plus-jakarta-sans": ["var(--font-jakarta-sans)"],
+        montserrat: ["var(--font-montserrat)"],
+      },
     },
   },
   plugins: [
     plugin(function ({ matchUtilities, theme }) {
       matchUtilities(
         {
-          'text-shadow': (value) => ({
+          "text-shadow": (value) => ({
             textShadow: value,
           }),
         },
-        { values: theme('textShadow') }
-      )
+        { values: theme("textShadow") },
+      );
     }),
   ],
 };
