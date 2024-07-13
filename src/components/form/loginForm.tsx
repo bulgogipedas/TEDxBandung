@@ -1,95 +1,89 @@
 "use client";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { login } from "@/actions/login";
-import { useFormData } from "@/hooks";
-import { loginSchema } from "@/schemas/auth/loginSchema";
 
 export default function LoginForm() {
-  const [formState, setFormstate] = useState({
-    loading: false,
-    error: "",
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors, isLoading },
+    trigger,
+    getValues,
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
-  const defaultValue = {
-    email: "",
-    password: "",
-  };
-
-  const {
-    formData,
-    validationError,
-    disabledButton,
-    handleChangeFormData,
-    handleBlurFormData,
-  } = useFormData(defaultValue, loginSchema);
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormstate((prev) => ({ ...prev, loading: true }));
+  const handleLogin = async () => {
     try {
-      const res = await login(formData as { email: string; password: string });
+      const res = await login(getValues());
 
       if (res?.error) {
-        setFormstate((prev) => ({ ...prev, error: res.error as string }));
+        setError("root", { message: res?.error as string });
         return;
       }
 
       setTimeout(() => {
         window.location.reload();
       }, 1000);
-    } finally {
-      setTimeout(() => {
-        setFormstate((prev) => ({ ...prev, loading: false }));
-      }, 1000);
+    } catch (error) {
+      /** TODO: handle error on submit */
+      console.error(error);
     }
   };
 
   return (
     <>
-      <form className="flex flex-col gap-4" onSubmit={handleLogin}>
-        {formState.error.length > 0 && (
-          <span className="text-red-500">{formState.error}</span>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleLogin)}
+      >
+        {errors.root && (
+          <span className="text-red-500">{errors.root.message}</span>
         )}
         <label htmlFor="email">Email</label>
         <input
           type="email"
-          name="email"
           placeholder="email"
-          className={`input input-primary ${validationError.error?.email?.length > 0 ? "input-error" : ""}`}
-          onBlur={handleBlurFormData}
-          onChange={handleChangeFormData}
-        />
-        {validationError.error?.email?.length > 0 &&
-          validationError.error?.email.map((err, i) => {
-            return (
-              <span className="text-red-500" key={i}>
-                {err}
-              </span>
-            );
+          className={`input ${errors.email ? "input-error" : "input-primary"}`}
+          {...register("email", {
+            required: {
+              value: true,
+              message: "email is required",
+            },
+            onBlur: () => trigger("email"),
+            onChange: () => trigger("email"),
           })}
+        />
+        {errors.email && (
+          <span className="text-red-500">{errors.email.message}</span>
+        )}
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          name="password"
           placeholder="password"
-          className={`input input-primary ${validationError.error?.password?.length > 0 ? "input-error" : ""}`}
-          onBlur={handleBlurFormData}
-          onChange={handleChangeFormData}
-        />
-        {validationError.error?.password?.length > 0 &&
-          validationError.error?.password.map((err, i) => {
-            return (
-              <span className="text-red-500" key={i}>
-                {err}
-              </span>
-            );
+          className={`input ${errors.password ? "input-error" : "input-primary"}`}
+          {...register("password", {
+            required: {
+              value: true,
+              message: "password is required",
+            },
+            onBlur: () => trigger("password"),
+            onChange: () => trigger("password"),
           })}
+        />
+        {errors.password && (
+          <span className="text-red-500">{errors.password.message}</span>
+        )}
         <button
-          data-loading={formState.loading}
+          data-loading={isLoading}
           type="submit"
-          className="btn btn-primary"
-          disabled={disabledButton || formState.loading}
+          className="btn btn-primary btn-base-black"
+          disabled={Object.keys(errors).length > 0 || isLoading}
         >
           submit
         </button>
