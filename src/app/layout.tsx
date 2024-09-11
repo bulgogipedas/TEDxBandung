@@ -23,7 +23,7 @@ export default function RootLayout({
         <NextProgressBar />
         <Header />
         <SessionWrapper>
-          <main>{children}</main>
+          <main className="pt-20 bg-green-300 min-h-screen">{children}</main>
         </SessionWrapper>
       </body>
     </html>
