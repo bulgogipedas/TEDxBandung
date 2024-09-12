@@ -2,7 +2,7 @@ import "@/scss/main.scss";
 
 import type { Metadata } from "next";
 
-import { montserrat, plusJakartaSans } from "@/components/fonts";
+import { montserrat, plusJakartaSans, spaceGrotesk } from "@/components/fonts";
 import { NextProgressBar } from "@/components/loader";
 import { Header } from "@/components/partials/navbar";
 import { default as SessionWrapper } from "@/components/session/wrapper";
@@ -19,11 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.className} ${montserrat.className}`}>
+      <body
+        className={`${plusJakartaSans.className} ${montserrat.className} ${spaceGrotesk.className}`}
+      >
         <NextProgressBar />
-        <Header />
+        <Header isDark={false} />
         <SessionWrapper>
-          <main className="pt-20 bg-green-300 min-h-screen">{children}</main>
+          <main className="pt-20 bg-success-200 min-h-screen">{children}</main>
         </SessionWrapper>
       </body>
     </html>

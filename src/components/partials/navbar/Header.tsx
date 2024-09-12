@@ -1,42 +1,29 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-// icons
-import { FaInstagram, FaTiktok } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
 
 import Navbar from "./Navbar";
 
-export default function Header() {
+interface Props {
+  isDark: boolean;
+}
+
+export default function Header(props: Props) {
   return (
-    <header className="header font-plus-jakarta-sans">
+    <header
+      className={`header font-space-grotesk ${props.isDark ? "" : "header-light"}`}
+    >
       <div className="flex items-center justify-between w-full">
-        <Link href="/">
+        <Link href="/" className="block">
           <Image
-            src="/logo/logo-white.svg"
+            src={props.isDark ? "/logo/logo-white.svg" : "/logo/logo-black.svg"}
             alt="Site Logo"
             width={200}
             height={200}
             loading="lazy"
           />
         </Link>
-        <Navbar />
-        <div className="space-x-5 flex items-center">
-          <button className="btn btn-base-white">
-            <Link href="/auth/login">
-              <FaInstagram size={20} />
-            </Link>
-          </button>
-          <button className="btn btn-base-white">
-            <Link href="/auth/login">
-              <FaTiktok size={20} />
-            </Link>
-          </button>
-          <button className="btn btn-base-white">
-            <Link href="mailto:test@example.com">
-              <IoIosMail size={20} />
-            </Link>
-          </button>
-        </div>
+        <Navbar isDark={props.isDark} />
       </div>
     </header>
   );

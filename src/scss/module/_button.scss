@@ -2,7 +2,7 @@
   .btn {
     @apply py-[10px] px-[20px] w-fit;
     @apply flex items-center justify-center gap-2;
-    @apply transition duration-200;
+    @apply transition duration-200 cursor-pointer;
     border-radius: $border_radius;
 
     @each $name, $value in $color {

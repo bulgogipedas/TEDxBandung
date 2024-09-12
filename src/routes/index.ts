@@ -11,6 +11,8 @@ export const publicRoutes = [
   "/example/pokemon/csr",
   "/example/debounce",
   "/example/form-validation",
+  "/example/typography",
+  "/example/button",
 ];
 
 /**

@@ -1,9 +1,15 @@
+import Link from "next/link";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa6";
 
 export default function Page() {
   return (
-    <section className="px-20">
-      <div className="grid place-items-start">
+    <section className="page__container">
+      <Link href="/example" className="flex items-center gap-5 mt-10">
+        <FaArrowLeft size={30} />
+        <h1 className="text-title">Button</h1>
+      </Link>
+      <div className="grid place-items-start mt-10">
         <h1 className="text-2xl mb-5">Button Default</h1>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
           <button className="btn btn-type-default btn-red">

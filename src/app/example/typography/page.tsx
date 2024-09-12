@@ -1,11 +1,15 @@
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa6";
+
 export default function Page() {
   return (
-    <section className="px-10">
+    <section className="page__container">
       <div>
-        <h1 className="text-2xl mb-5 underline underline-offset-8">
-          Title, Sub Title, and Paragraph
-        </h1>
-        <div>
+        <Link href="/example" className="flex items-center gap-5 mt-10">
+          <FaArrowLeft size={30} />
+          <h1 className="text-title">Typography</h1>
+        </Link>
+        <div className="mt-16">
           <h2 className="text-title">Title</h2>
           <span className="text-sm text-gray-600">.text-title</span>
         </div>

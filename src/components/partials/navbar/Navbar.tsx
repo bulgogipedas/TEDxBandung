@@ -5,17 +5,21 @@ import { usePathname } from "next/navigation";
 
 import menu from "@/data/menus/index.json";
 
-export default function Navbar() {
+interface Props {
+  isDark: boolean;
+}
+
+export default function Navbar(props: Props) {
   const pathname = usePathname();
   return (
-    <nav role="navigation" className="nav nav-base-white-rounded">
+    <nav role="navigation" className="nav">
       <ul className="flex items-center">
         {menu.data.map((menu, index) => (
           <li
             key={index}
-            className={`${pathname === menu.path ? "active" : ""}`}
+            className={`${pathname === menu.path ? "active" : ""} nav-li-${props.isDark ? "light" : "dark"}`}
           >
-            <Link href={menu.path} className="nav-link">
+            <Link href={menu.path} className="">
               {menu.label}
             </Link>
           </li>
