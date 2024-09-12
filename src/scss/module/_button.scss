@@ -61,5 +61,24 @@
         background-position: center;
       }
     }
+
+    &.btn-circle {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      padding: 5px !important;
+      background-color: white;
+      color: black;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgb(57, 57, 57);
+        color: white;
+      }
+
+      &:active {
+        filter: brightness(0.6);
+      }
+    }
   }
 }
