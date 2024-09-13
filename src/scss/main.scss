@@ -4,9 +4,28 @@
 
 @import "./module/index";
 
+html {
+  @apply scroll-smooth;
+}
+
 .page {
   &__container {
     @apply md:px-16 px-10;
   }
 }
-
+.section {
+  &__container {
+    @apply py-20;
+  }
+}
+.hero__video {
+  object-fit: cover;
+  z-index: -100;
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  inset: -100%;
+}

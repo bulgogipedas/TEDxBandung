@@ -7,7 +7,7 @@
     opacity 0.3s ease;
 
   &.show {
-    max-height: 500px;
+    max-height: 100vh;
     opacity: 1;
   }
 }
@@ -76,6 +76,6 @@
     }
   }
   .backdrop {
-    @apply fixed top-0 left-0 right-0 bottom-0 bg-black/20 z-40;
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-black/40 z-40;
   }
 }
