@@ -1,6 +1,7 @@
 "use client";
-import { Accordion } from "@/components/accordion";
 import Link from "next/link";
+
+import { Accordion } from "@/components/accordion";
 
 export default function Page() {
   return (
@@ -22,7 +23,10 @@ export default function Page() {
           <h2 className="text-subtitle">3. Form validation</h2>
         </Link>
         <div className="my-3">
-          <Accordion buttonClassname="text-heading btn" title="4. Data Fetching">
+          <Accordion
+            buttonClassname="text-heading btn"
+            title="4. Data Fetching"
+          >
             <Link href="/example/pokemon/csr" className="btn">
               <h2 className="text-subtitle">4.1. CSR</h2>
             </Link>
