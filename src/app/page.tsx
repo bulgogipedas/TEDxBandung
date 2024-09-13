@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaArrowDown } from "react-icons/fa";
 
 import { AboutCard } from "@/components/card";
+import { ImageCarousel } from "@/components/carousel";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
             <source src="/video/home/videoplayback.webm" type="video/webm" />
           </video>
         </div>
-        <div className="absolute left-16 bottom-16 z-30 lg:w-2/5 w-2/3">
+        <div className="absolute md:left-16 md:bottom-16 left-10 bottom-10 z-30 lg:w-2/5 w-2/3">
           <h1 className="text-title text-white mb-3">Lorem Ipsum</h1>
           <p className="text-paragraph text-white mb-7">
             Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
@@ -42,7 +43,7 @@ export default function Home() {
       </section>
       <section
         id="flashback"
-        className="grid md:grid-cols-2 grid-cols-1 section__container page__container"
+        className="grid lg:grid-cols-2 grid-cols-1 section__container page__container gap-10"
       >
         <div>
           <h2 className="text-heading">Jejak Inspirasi</h2>
@@ -62,13 +63,45 @@ export default function Home() {
             sociosqu ad litora Class aptent taciti sociosqu ad litora
           </p>
         </div>
-        <div></div>
+        <div className="lg:col-start-2 row-start-1">
+          <ImageCarousel />
+        </div>
       </section>
       <section
         id="perspective"
-        className="grid md:grid-cols-2 grid-cols-1 section__container page__container"
+        className="grid lg:grid-cols-2 grid-cols-1 section__container page__container gap-10"
       >
-        <div></div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-rows-2 gap-4">
+            <div className="image__cover__wrapper">
+              <Image
+                src="/images/image_placeholder.png"
+                alt="placeholder image"
+                width={150}
+                height={150}
+                className="object-contain featured__image"
+              />
+            </div>
+            <div className="image__cover__wrapper">
+              <Image
+                src="/images/image_placeholder.png"
+                alt="Image 2"
+                width={150}
+                height={150}
+                className="object-contain featured__image"
+              />
+            </div>
+          </div>
+          <div className="bg-gray-200 image__cover__wrapper">
+            <Image
+              src="/images/image_placeholder.png"
+              alt="Image 3"
+              width={150}
+              height={150}
+              className="featured__image"
+            />
+          </div>
+        </div>
         <div>
           <div>
             <h2 className="text-heading">Merubah Perspektif</h2>
