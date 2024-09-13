@@ -6,7 +6,7 @@
 
 .page {
   &__container {
-    @apply px-16;
+    @apply md:px-16 px-10;
   }
 }
 

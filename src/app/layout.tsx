@@ -26,7 +26,7 @@ export default function RootLayout({
         <NextProgressBar />
         <Header isDark={false} />
         <SessionWrapper>
-          <main className="pt-20 bg-success-200 min-h-screen">{children}</main>
+          <main className="py-20 bg-success-200 min-h-screen">{children}</main>
         </SessionWrapper>
         <Footer />
       </body>

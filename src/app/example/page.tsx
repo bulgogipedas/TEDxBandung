@@ -1,22 +1,8 @@
 "use client";
+import { Accordion } from "@/components/accordion";
 import Link from "next/link";
-import { useState } from "react";
-import { FaChevronDown } from "react-icons/fa";
 
 export default function Page() {
-  const [dropdownState, setDropdownState] = useState({
-    main: false,
-    nested1: false,
-  });
-
-  // Function to toggle the dropdown state dynamically
-  const toggleDropdown = (key: string) => {
-    setDropdownState((prevState: any) => ({
-      ...prevState,
-      [key]: !prevState[key],
-    }));
-  };
-
   return (
     <section className="page__container">
       <h1 className="text-title mt-10">Example</h1>
@@ -35,54 +21,20 @@ export default function Page() {
         <Link href="/example/form-validation" className="btn hover:opacity-60">
           <h2 className="text-subtitle">3. Form validation</h2>
         </Link>
-        <div className="btn hover:opacity-60 example-dropdown">
-          <ul>
-            <button
-              className="text-subtitle flex items-center gap-2"
-              onClick={() => toggleDropdown("main")}
-            >
-              4. Fetching Pokemon{" "}
-              <FaChevronDown
-                className={`${dropdownState?.main && "rotate-180"} mt-1`}
-                size={25}
-              />
-            </button>
-            <ul
-              className={`example-dropdown__menu ${dropdownState?.main && "show"}`}
-            >
-              <li className="example-dropdown__item mt-5">
-                <Link href="/example/pokemon/csr">
-                  <h2 className="text-subtitle">4.1. CSR</h2>
-                </Link>
-                <ul className="mt-5">
-                  <button
-                    className="text-subtitle flex items-center gap-2"
-                    onClick={() => toggleDropdown("nested1")}
-                  >
-                    4.2. SSR
-                    <FaChevronDown
-                      className={`${dropdownState?.nested1 && "rotate-180"} mt-1`}
-                      size={25}
-                    />
-                  </button>
-                  <ul
-                    className={`example-dropdown__menu ${dropdownState?.nested1 && "show"}`}
-                  >
-                    <li className="example-dropdown__item mt-5">
-                      <Link href="/example/pokemon/ssr/parallel">
-                        <h2 className="text-subtitle">4.2.1. Parallel</h2>
-                      </Link>
-                    </li>
-                    <li className="example-dropdown__item mt-5">
-                      <Link href="/example/pokemon/ssr/sequential">
-                        <h2 className="text-subtitle">4.2.2. Sequential</h2>
-                      </Link>
-                    </li>
-                  </ul>
-                </ul>
-              </li>
-            </ul>
-          </ul>
+        <div className="my-3">
+          <Accordion buttonClassname="text-heading btn" title="4. Data Fetching">
+            <Link href="/example/pokemon/csr" className="btn">
+              <h2 className="text-subtitle">4.1. CSR</h2>
+            </Link>
+            <Accordion buttonClassname="text-heading btn" title="4.2. SSR">
+              <Link href="/example/pokemon/ssr/parallel" className="btn">
+                <h2 className="text-subtitle">4.2.1. Parallel</h2>
+              </Link>
+              <Link href="/example/pokemon/ssr/sequential" className="btn">
+                <h2 className="text-subtitle">4.2.2. Sequential</h2>
+              </Link>
+            </Accordion>
+          </Accordion>
         </div>
         <Link href="/example/debounce" className="btn hover:opacity-60">
           <h2 className="text-subtitle">5. Debounce</h2>

@@ -1,6 +1,20 @@
+@mixin dropdown {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+
+  &.show {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
 @layer components {
   .header {
-    @apply flex items-center justify-between py-3 md:px-16 px-[120px] transition duration-1000;
+    @apply flex items-center justify-between py-3 md:px-16 px-10 transition duration-1000;
     @apply fixed top-0 left-0 right-0 z-40;
 
     @each $color, $value in $nav_color {
@@ -11,79 +25,57 @@
 
     .nav {
       ul {
-        @apply gap-20;
+        @apply lg:gap-20 sm:gap-5 gap-2;
         @each $color, $value in $nav_color {
           .nav-li-#{$color} {
             @apply py-[10px] px-[10px];
             @apply font-semibold;
             color: $value;
-  
+
             &:hover {
               color: #eb0028;
             }
           }
         }
       }
-    }
+      .dropdown {
+        @apply absolute top-14 bg-base-black p-5 min-w-[400px];
+        @apply translate-y-[100px] opacity-0 invisible transition-all duration-300 z-50;
 
-    &.header-active {
-      @apply bg-base-white;
+        &__item {
+          @apply text-base-white text-base cursor-pointer;
+          @apply transition duration-200 hover:brightness-75;
+        }
+        &__title {
+          @apply font-semibold;
+        }
+        &__description {
+          @apply mt-2;
+        }
+        &__separator {
+          @apply border-[1px] border-base-white/70 w-full h-[1px];
+          @apply my-3;
+        }
+        &__active {
+          @apply translate-y-0 opacity-100 visible transition-all duration-300;
+        }
+      }
     }
   }
 
   .nav-mobile {
     @apply fixed top-0 left-0 right-0 bottom-0;
-    @apply flex flex-col items-center justify-center;
-    @apply bg-dark-blue -z-10;
-    @apply transition duration-200;
-  }
+    @apply flex flex-col;
+    @apply bg-white -z-10;
+    @apply transition duration-200 pt-20;
 
-  .sidebar {
-    @apply font-poppins fixed top-0 bottom-0 left-0 min-w-[200px] bg-dark-blue z-30;
-    @apply md:right-[unset] right-0;
-    @apply transition duration-200;
+    @include dropdown;
 
-    &.sidebar-open {
-      @apply md:translate-x-0;
-    }
-
-    &.sidebar-close {
-      @apply -translate-x-[1000px] md:-translate-x-0;
-    }
-
-    .sidebar-link {
-      @apply text-light-purple hover:text-light-blue hover:underline transition duration-200 py-3 pl-3 text-sm;
-
-      &.active {
-        @apply bg-[#2E37A4] text-white;
-        &::after {
-          content: "";
-          background-color: #36c2cf;
-          width: 8px; /* Adjust width and height according to your spinner size */
-          position: absolute;
-          right: 0;
-          top: 0;
-          bottom: 0;
-        }
-      }
-    }
-  }
-  .sidebar-btn-toggle {
-    @apply fixed h-[60px] left-0 top-1/2 -translate-y-1/2 bg-dark-blue;
-    @apply rounded-r-xl grid place-items-center z-20;
-  }
-  .dropdown {
-    @apply absolute top-20 right-10;
-    @apply transition duration-200;
-    @apply translate-y-40 opacity-0;
-    @apply bg-white px-10 py-3 shadow-xl;
-    @apply -z-10;
-
-    &.dropdown-open {
-      @apply translate-y-0 opacity-100 z-20;
+    ul li {
+      @apply w-full p-2 my-2;
     }
   }
   .backdrop {
-    @apply fixed top-0 left-0 right-0 bottom-0 bg-black/20;
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-black/20 z-40;
   }
 }
