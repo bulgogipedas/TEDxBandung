@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <section className="page__container">
       <div>
-        <Link href="/example" className="flex items-center gap-5 mt-10">
+        <Link href="/example" className="flex items-center gap-5 mt-20">
           <FaArrowLeft size={30} />
           <h1 className="text-title">Typography</h1>
         </Link>

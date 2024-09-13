@@ -32,7 +32,7 @@ export default function Debounce() {
 
   return (
     <section className="page__container">
-      <Link href="/example" className="flex items-center gap-5 mt-10">
+      <Link href="/example" className="flex items-center gap-5 mt-20">
         <FaArrowLeft size={30} />
         <h1 className="text-title">Debounce</h1>
       </Link>
