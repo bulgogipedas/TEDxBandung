@@ -1,0 +1,45 @@
+$type: (
+  "text": (
+    "black": (
+      "default": #000,
+      "hover": white,
+    ),
+    "white": (
+      "default": white,
+      "hover": #000,
+    ),
+  ),
+);
+
+$color: (
+  "red": (
+    "default": white,
+    "hover": #eb0028,
+  ),
+  "black": (
+    "default": #000,
+    "hover": white,
+  ),
+);
+
+$border_radius: 6px;
+
+$size: (
+  "small": (
+    "gap": 10px,
+    "height": 30px,
+  ),
+  "medium": (
+    "gap": 10px,
+    "height": 40px,
+  ),
+  "default": (
+    "gap": 12px,
+    "height": 52px,
+  ),
+);
+
+$nav_color: (
+  'light': #fff,
+  'dark': #000,
+);

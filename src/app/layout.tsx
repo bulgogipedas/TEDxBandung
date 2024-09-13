@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
 import "@/scss/main.scss";
-import { default as SessionWrapper } from "@/components/session/wrapper";
-import { Header } from "@/components/partials/navbar";
-import { montserrat, plusJakartaSans } from "@/components/fonts";
+
+import type { Metadata } from "next";
+
+import { montserrat, plusJakartaSans, spaceGrotesk } from "@/components/fonts";
 import { NextProgressBar } from "@/components/loader";
+import { Footer } from "@/components/partials/footer";
+import { Header } from "@/components/partials/navbar";
+import { default as SessionWrapper } from "@/components/session/wrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,12 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.variable} ${montserrat.variable}`}>
+      <body
+        className={`${plusJakartaSans.className} ${montserrat.className} ${spaceGrotesk.className}`}
+      >
         <NextProgressBar />
-        <Header />
+        <Header isDark={false} />
         <SessionWrapper>
-          {children}
+          <main className="py-20 bg-success-200 min-h-screen">{children}</main>
         </SessionWrapper>
+        <Footer />
       </body>
     </html>
   );

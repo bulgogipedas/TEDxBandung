@@ -1,0 +1,84 @@
+@layer components {
+  .btn {
+    @apply py-[10px] px-[20px] w-fit;
+    @apply flex items-center justify-center gap-2;
+    @apply transition duration-200 cursor-pointer;
+    border-radius: $border_radius;
+
+    @each $name, $value in $color {
+      &.btn-#{$name} {
+        border: 1px solid map-get($value, "default");
+        background-color: map-get($value, "default");
+        color: map-get($value, "hover");
+
+        &:hover {
+          border: 1px solid map-get($value, "hover");
+          background-color: map-get($value, "hover");
+          color: map-get($value, "default");
+        }
+
+        &:active {
+          filter: brightness(0.9);
+        }
+      }
+    }
+
+    @each $type-name, $colors in $type {
+      &.btn-type-#{$type-name} {
+        background-color: transparent !important;
+        border-color: transparent !important;
+
+        @each $color-name, $states in $colors {
+          &.btn-text-#{$color-name} {
+            color: map-get($states, "default");
+
+            &:hover {
+              color: map-get($states, "hover");
+            }
+          }
+        }
+      }
+    }
+
+    @each $size-name, $size-values in $size {
+      &.btn-size-#{$size-name} {
+        gap: map-get($size-values, "gap");
+        height: map-get($size-values, "height");
+      }
+    }
+
+    &[data-loading="true"] {
+      cursor: not-allowed;
+      &::before {
+        content: "";
+        display: block;
+        color: white;
+        width: 24px; /* Adjust width and height according to your spinner size */
+        height: 24px;
+        margin-right: 10px;
+        background-image: url("../../assets/icons/ring-resize.svg"); /* Replace 'path_to_your_spinner.svg' with the actual path to your SVG */
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+
+    &.btn-circle {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      padding: 5px !important;
+      background-color: white;
+      color: black;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgb(57, 57, 57);
+        color: white;
+      }
+
+      &:active {
+        filter: brightness(0.6);
+      }
+    }
+  }
+}

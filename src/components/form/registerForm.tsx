@@ -1,98 +1,117 @@
-"use client"
-import { useFormData } from "@/hooks"
-import { registerSchema } from "@/schemas/auth/registerSchema"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+"use client";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
+import { register as registerAction } from "@/actions/register";
 export default function RegisterForm() {
-  const route = useRouter()
-
-  const [formState, setFormstate] = useState({
-    loading: false,
-    error: ''
-  })
-
-  const defaultValue = {
-    email: '',
-    job: ''
-  }
+  const route = useRouter();
 
   const {
-    formData,
-    validationError,
-    disabledButton,
-    handleChangeFormData,
-    handleBlurFormData,
-  } = useFormData(defaultValue, registerSchema)
+    register,
+    handleSubmit,
+    trigger,
+    getValues,
+    clearErrors,
+    setError,
+    formState: { errors, isLoading },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+      job: "",
+    },
+  });
 
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setFormstate(prev => ({ ...prev, loading: true }))
-
+  const handleSignup = async () => {
     try {
-      const res = await fetch('https://reqres.in/api/users', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData)
-      })
+      const res = await registerAction(getValues());
 
-      if (!res.ok) {
-        setFormstate(prev => ({ ...prev, error: 'Something went wrong' }))
-        return
+      if (res.error) {
+        console.log(res);
+        setError("root", {
+          message: (res!.error as string) || "Something went wrong",
+        });
+
+        setTimeout(() => {
+          clearErrors("root");
+        }, 2000);
+        return;
       }
 
       setTimeout(() => {
-        route.push('/auth/login')
+        route.push("/auth/login");
       }, 1000);
-
-    } finally {
-      setFormstate(prev => ({ ...prev, loading: false }))
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   return (
     <>
-      <form className="flex flex-col gap-4" onSubmit={handleSignup}>
-        {formState.error.length > 0 && <span className="text-red-500">{formState.error}</span>}
-        <label>Email</label>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit(handleSignup)}
+      >
+        {errors.root && (
+          <span className="text-red-500">{errors.root.message}</span>
+        )}
+        <label htmlFor="email">Email</label>
         <input
           type="email"
-          name="email"
           placeholder="email"
-          className={`input input-primary ${validationError.error?.email?.length > 0 ? 'input-error' : ''}`}
-          onBlur={handleBlurFormData}
-          onChange={handleChangeFormData}
+          className={`input ${errors.email ? "input-error" : "input-primary"}`}
+          {...register("email", {
+            required: {
+              value: true,
+              message: "email is required",
+            },
+            minLength: {
+              value: 10,
+              message: "email must be at least 10 characters",
+            },
+            onBlur: () => trigger("email"),
+            onChange: () => trigger("email"),
+          })}
         />
-        {
-          validationError.error?.email?.length > 0 &&
-          validationError.error?.email.map((err, i) => {
-            return (
-              <span className="text-red-500" key={i}>{err}</span>
-            )
-          })
-        }
-        <label>Password</label>
+        {errors.email && (
+          <span className="text-red-500">{errors.email.message}</span>
+        )}
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          name="password"
           placeholder="password"
-          className={`input input-primary ${validationError.error?.password?.length > 0 ? 'input-error' : ''}`}
-          onBlur={handleBlurFormData}
-          onChange={handleChangeFormData}
+          className={`input ${errors.password ? "input-error" : "input-primary"}`}
+          {...register("password", {
+            required: {
+              value: true,
+              message: "password is required",
+            },
+            minLength: {
+              value: 8,
+              message: "password must be at least 8 characters",
+            },
+            onBlur: () => trigger("password"),
+            onChange: () => trigger("password"),
+          })}
         />
-        {
-          validationError.error?.password?.length > 0 &&
-          validationError.error?.password.map((err, i) => {
-            return (
-              <span className="text-red-500" key={i}>{err}</span>
-            )
-          })
-        }
-        <button data-loading={formState.loading} type="submit" className="btn btn-primary" disabled={disabledButton || formState.loading}>submit</button>
+        {errors.password && (
+          <span className="text-red-500">{errors.password.message}</span>
+        )}
+        <button
+          data-loading={isLoading}
+          type="submit"
+          className="btn btn-primary btn-brand"
+          disabled={Object.keys(errors).length > 0 || isLoading}
+        >
+          submit
+        </button>
       </form>
-      <p className="mt-2">Already have account? <a className="font-bold" href="/auth/login">Login</a></p>
+      <p className="mt-2">
+        Already have account?{" "}
+        <a className="font-bold" href="/auth/login">
+          Login
+        </a>
+      </p>
     </>
-  )
+  );
 }

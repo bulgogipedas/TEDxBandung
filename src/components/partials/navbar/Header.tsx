@@ -1,69 +1,54 @@
-"use client"
-
-import { useState } from "react";
-
-import Link from "next/link";
-import Navbar from "./Navbar";
+"use client";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-// icons
-import { FaInstagram, FaTiktok } from "react-icons/fa";
-import { IoIosMail, IoMdMenu } from "react-icons/io";
-import { animateNavbarActive, animateNavbarInactive } from "./animation";
+import Navbar from "./Navbar";
 
-export default function Header() {
-    const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+interface Props {
+  isDark: boolean;
+}
 
-    const handleClick = () => {
-        setIsNavbarOpen(!isNavbarOpen);
-        if(isNavbarOpen) {
-            animateNavbarActive();
-        } else {
-            animateNavbarInactive();
-        }
+export default function Header(props: Props) {
+  const [isNavbarMobileVisible, setIsNavbarMobileVisible] = useState(false);
+
+  const toggleNavbarMobileVisible = () => {
+    if (isNavbarMobileVisible) {
+      setIsNavbarMobileVisible(false);
+      return;
     }
-    return (
-        <header className="header z-40 font-plus-jakarta-sans">
-            <div className="flex items-center justify-between w-full">
-                <Link href="/" className="z-30">
-                    <Image
-                        src="/logo/logo-white.svg"
-                        alt="Site Logo"
-                        width={200}
-                        height={200}
-                        loading="lazy"
-                        className="md:w-[200px] w-[300px]"
-                    />
-                </Link>
-                <Navbar 
-                    isNavbarOpen={isNavbarOpen} 
-                    setIsNavbarOpen={setIsNavbarOpen} 
-                />
-                <div className="space-x-1 items-center lg:space-x-5 md:flex hidden">
-                    <button className="btn btn-base-white">
-                        <Link href="/auth/login">
-                            <FaInstagram size={20} />
-                        </Link>
-                    </button>
-                    <button className="btn btn-base-white">
-                        <Link href="/auth/login">
-                            <FaTiktok size={20} />
-                        </Link>
-                    </button>
-                    <button className="btn btn-base-white">
-                        <Link href="mailto:test@example.com">
-                            <IoIosMail size={20} />
-                        </Link>
-                    </button>
-                </div>
-                <div className="md:hidden block relative z-40">
-                    <button 
-                        onClick={handleClick}
-                        className="btn btn-base-white">
-                        <IoMdMenu className="text-4xl" />
-                    </button>
-                </div>
-            </div>
-        </header>
-    )
+    setIsNavbarMobileVisible(true);
+  };
+
+  return (
+    <header
+      className={`header font-space-grotesk ${props.isDark ? "" : "header-light"}`}
+    >
+      <div className="flex items-center justify-between w-full">
+        <Link href="/" className="block">
+          <Image
+            src={props.isDark ? "/logo/logo-white.svg" : "/logo/logo-black.svg"}
+            alt="Site Logo"
+            width={200}
+            height={200}
+            loading="lazy"
+          />
+        </Link>
+        <Navbar
+          isDark={props.isDark}
+          isNavbarMobileVisible={isNavbarMobileVisible}
+        />
+        <button
+          onClick={toggleNavbarMobileVisible}
+          className="absolute top-6 right-12 md:hidden"
+        >
+          <GiHamburgerMenu
+            size={25}
+            className={`${isNavbarMobileVisible ? "text-red-600" : ""}`}
+          />
+        </button>
+      </div>
+    </header>
+  );
 }
