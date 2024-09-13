@@ -1,0 +1,81 @@
+@mixin dropdown {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+
+  &.show {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+@layer components {
+  .header {
+    @apply flex items-center justify-between py-3 md:px-16 px-10 transition duration-1000;
+    @apply fixed top-0 left-0 right-0 z-40;
+
+    @each $color, $value in $nav_color {
+      &.header-#{$color} {
+        background-color: $value;
+      }
+    }
+
+    .nav {
+      ul {
+        @apply lg:gap-20 sm:gap-5 gap-2;
+        @each $color, $value in $nav_color {
+          .nav-li-#{$color} {
+            @apply py-[10px] px-[10px];
+            @apply font-semibold;
+            color: $value;
+
+            &:hover {
+              color: #eb0028;
+            }
+          }
+        }
+      }
+      .dropdown {
+        @apply absolute top-14 bg-base-black p-5 min-w-[400px];
+        @apply translate-y-[100px] opacity-0 invisible transition-all duration-300 z-50;
+
+        &__item {
+          @apply text-base-white text-base cursor-pointer;
+          @apply transition duration-200 hover:brightness-75;
+        }
+        &__title {
+          @apply font-semibold;
+        }
+        &__description {
+          @apply mt-2;
+        }
+        &__separator {
+          @apply border-[1px] border-base-white/70 w-full h-[1px];
+          @apply my-3;
+        }
+        &__active {
+          @apply translate-y-0 opacity-100 visible transition-all duration-300;
+        }
+      }
+    }
+  }
+
+  .nav-mobile {
+    @apply fixed top-0 left-0 right-0 bottom-0;
+    @apply flex flex-col;
+    @apply bg-white -z-10;
+    @apply transition duration-200 pt-20;
+
+    @include dropdown;
+
+    ul li {
+      @apply w-full p-2 my-2;
+    }
+  }
+  .backdrop {
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-black/20 z-40;
+  }
+}

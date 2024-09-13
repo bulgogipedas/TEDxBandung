@@ -107,6 +107,7 @@ const config: Config = {
       fontFamily: {
         "plus-jakarta-sans": ["var(--font-jakarta-sans)"],
         montserrat: ["var(--font-montserrat)"],
+        "space-grotesk": ["var(--font-space-grotesk)"],
       },
     },
   },

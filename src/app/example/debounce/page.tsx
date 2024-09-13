@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 import { useDebouncedValue } from "@/hooks";
 
@@ -29,9 +31,15 @@ export default function Debounce() {
   }, [debouncedValue]);
 
   return (
-    <main>
-      <p>debounce will start fetching if you stop typing</p>
-      <form>
+    <section className="page__container">
+      <Link href="/example" className="flex items-center gap-5 mt-10">
+        <FaArrowLeft size={30} />
+        <h1 className="text-title">Debounce</h1>
+      </Link>
+      <p className="text-subtitle">
+        debounce will start fetching if you stop typing
+      </p>
+      <form className="mt-10">
         <input
           type="text"
           className="input input-primary"
@@ -40,7 +48,7 @@ export default function Debounce() {
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </form>
-      <div className="posts">
+      <div className="posts mt-5">
         <ul className={`${isLoading ? "opacity-30" : ""}`}>
           {data.length > 0 ? (
             data.map((post, index) => {
@@ -51,13 +59,16 @@ export default function Debounce() {
               );
             })
           ) : (
-            <p>data not found</p>
+            <p className="my-5">data not found</p>
           )}
         </ul>
-        <button data-loading={isLoading} className="btn btn-primary">
+        <button
+          data-loading={isLoading}
+          className="btn btn-type-default btn-red mt-5"
+        >
           button
         </button>
       </div>
-    </main>
+    </section>
   );
 }

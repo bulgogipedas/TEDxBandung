@@ -1,0 +1,20 @@
+@layer components {
+  .example-dropdown {
+    &__menu {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height 0.3s ease,
+        opacity 0.3s ease;
+
+      &.show {
+        max-height: 500px;
+        opacity: 1;
+      }
+    }
+    &__item {
+      @apply p-[10px] cursor-pointer;
+    }
+  }
+}

@@ -82,7 +82,7 @@ const RegisterForm = () => {
       <button
         disabled={Object.keys(errors).length > 0 || isSubmitting}
         type="submit"
-        className="btn btn-primary btn-base-black"
+        className="btn btn-type-default btn-black mt-5"
       >
         Submit
       </button>

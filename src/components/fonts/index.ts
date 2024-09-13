@@ -1,4 +1,4 @@
-import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 
 export const montserrat = Montserrat({
   subsets: ["latin"],
@@ -6,6 +6,11 @@ export const montserrat = Montserrat({
 });
 
 export const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+export const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });

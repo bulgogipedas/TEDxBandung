@@ -1,20 +1,20 @@
 {
     "data": [
         {
-            "path": "/about",
-            "label": "About"
+            "path": "/acara",
+            "label": "Acara"
         },
         {
-            "path": "/coming-soon",
-            "label": "Coming Soon"
+            "path": "/komunitas",
+            "label": "Komunitas"
         },
         {
-            "path": "/event",
-            "label": "Event"
+            "path": "/mitra",
+            "label": "Mitra"
         },
         {
-            "path": "/partner",
-            "label": "Partners"
+            "path": "/tentang-kami",
+            "label": "Tentang Kami"
         }
     ]
 }
