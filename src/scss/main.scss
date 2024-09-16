@@ -4,9 +4,51 @@
 
 @import "./module/index";
 
+html {
+  @apply scroll-smooth;
+}
+
 .page {
   &__container {
     @apply md:px-16 px-10;
   }
 }
+.section {
+  &__container {
+    @apply py-20;
+  }
+}
 
+.image__cover__wrapper {
+  width: 100%;
+  position: relative;
+
+  .featured__image {
+    object-fit: cover;
+    width: 100% !important;
+    position: relative !important;
+    height: 100% !important;
+    z-index: 1 !important;
+  }
+}
+
+.hero__video {
+  object-fit: cover;
+  z-index: -100;
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+  inset: -100%;
+}
+
+.pagination-bullet {
+  width: 1.5rem;
+  margin: 0 0.1rem;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #525A6A !important;
+}

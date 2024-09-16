@@ -1,0 +1,18 @@
+@layer components {
+  .card {
+    @apply p-5;
+    @apply flex flex-col;
+
+    &.card-about {
+      @apply bg-[#f8f8f8];
+
+      .card-about__title {
+        @apply text-xl font-semibold my-5;
+      }
+
+      .card-about__body {
+        @apply text-paragraph;
+      }
+    }
+  }
+}

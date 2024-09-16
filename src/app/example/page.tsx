@@ -6,7 +6,7 @@ import { Accordion } from "@/components/accordion";
 export default function Page() {
   return (
     <section className="page__container">
-      <h1 className="text-title mt-10">Example</h1>
+      <h1 className="text-title mt-20">Example</h1>
       <p className="text-paragraph">
         Welcome to the Component Examples page. Here, you&apos;ll find practical
         implementations of various UI elements, including typography, buttons,

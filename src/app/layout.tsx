@@ -24,9 +24,9 @@ export default function RootLayout({
         className={`${plusJakartaSans.className} ${montserrat.className} ${spaceGrotesk.className}`}
       >
         <NextProgressBar />
-        <Header isDark={false} />
+        <Header />
         <SessionWrapper>
-          <main className="py-20 bg-success-200 min-h-screen">{children}</main>
+          <main className="pb-20 min-h-screen">{children}</main>
         </SessionWrapper>
         <Footer />
       </body>
