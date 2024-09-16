@@ -43,6 +43,9 @@ const ImageCarousel = () => {
     >
       {images.map((image, index) => (
         <SwiperSlide key={index} className="image__cover__wrapper">
+          <div className="absolute top-5 right-5 z-30">
+            <p className="text-paragraph">DD/MM/YYYY</p>
+          </div>
           <Image
             src={image}
             alt="image"
@@ -50,12 +53,20 @@ const ImageCarousel = () => {
             width={100}
             height={100}
           />
+          <div className="absolute left-5 bottom-5 z-30">
+            <h3 className="md:text-heading text-subheading">
+              The Brave and The Brilliant
+            </h3>
+          </div>
         </SwiperSlide>
       ))}
       <div className="flex items-center justify-between mt-3">
         <div id="containerForBullets"></div>
         <button onClick={slideNext}>
-          <FaArrowRight className="text-[#667085]" size={20} />
+          <FaArrowRight
+            className="text-[#667085] hover:opacity-70 transition duration-200"
+            size={20}
+          />
         </button>
       </div>
     </Swiper>
